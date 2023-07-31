@@ -5,14 +5,14 @@ class Admin::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_account_update_params, only: [:update]
 
   # GET /resource/sign_up
-  # def new
-  #   super
-  # end
+  def new
+    redirect_to admin_path_url
+  end
 
   # POST /resource
-  # def create
-  #   super
-  # end
+  def create
+    redirect_to admin_path_url
+  end
 
   # GET /resource/edit
   # def edit
