@@ -10,6 +10,8 @@ gem "rails", "~> 7.0.5"
 gem "sprockets-rails"
 
 gem 'devise'
+
+gem 'phonelib'
 # Use mysql as the database for Active Record
 gem "mysql2", "~> 0.5"
 
