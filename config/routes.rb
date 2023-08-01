@@ -1,6 +1,19 @@
 Rails.application.routes.draw do
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
-  # Defines the root path route ("/")
-  # root "articles#index"
+  constraints(ClientDomainConstraint.new) do
+
+    devise_for :users, controllers: {
+      sessions: 'clients/sessions'
+    }
+
+  end
+
+  constraints(AdminDomainConstraint.new) do
+
+    devise_for :users, controllers: {
+      sessions: 'admins/sessions',
+      registrations: 'admins/registrations'
+    }, as: :admin
+
+  end
 end
