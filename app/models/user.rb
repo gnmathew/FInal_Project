@@ -12,4 +12,5 @@ class User < ApplicationRecord
     types: %i[voip mobile],
     countries: [:ph]
   }
+
 end

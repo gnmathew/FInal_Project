@@ -7,10 +7,16 @@ class Admins::SessionsController < Devise::SessionsController
   # def new
   #   super
   # end
-
+  # def create
+  #   # Continue with the default create action for admins
+  #   super
+  # end
+  def create
+      super
+  end
   # POST /resource/sign_in
   # def create
-  #   super
+  #     super
   # end
 
   # DELETE /resource/sign_out
@@ -24,8 +30,9 @@ class Admins::SessionsController < Devise::SessionsController
   # def configure_sign_in_params
   #   devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
   # end
-  def after_sign_in_path_for(resource)
+  # def after_sign_in_path_for(resource)
+  #
+  #     admin_root_path
+  # end
 
-      admin_root_path
-  end
 end

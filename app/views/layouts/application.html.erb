@@ -8,9 +8,40 @@
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
+
   </head>
 
   <body>
-    <%= yield %>
+    <%= render partial: 'clients/shared/client_navbar' %>
+    <div style="height: 1000px">
+      <div class="container pt-lg-5">
+
+        <% if flash[:alert] %>
+          <div class="alert alert-primary d-flex align-items-center mb-sm-1" role="alert" style="height: 20px;">
+            <svg class="bi flex-shrink-0 me-2" role="img" aria-label="Success:">
+              <use xlink:href="#check-circle-fill"/>
+            </svg>
+            <div>
+              <%= alert %>
+            </div>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+
+        <% end %>
+        <% if flash[:notice] %>
+          <div class="alert alert-warning d-flex align-items-center mb-sm-1" role="alert">
+            <svg class="bi flex-shrink-0 me-2" role="img" aria-label="Warning:">
+              <use xlink:href="#exclamation-triangle-fill"/>
+            </svg>
+            <div>
+              <%= notice %>on
+            </div>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        <% end %>
+        <%= yield %>
+      </div>
+      <%= render partial: 'clients/shared/client_footer' %>
+    </div>
   </body>
 </html>

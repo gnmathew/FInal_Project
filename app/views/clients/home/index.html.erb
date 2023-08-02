@@ -1,7 +1,118 @@
-CLIENT HOME
-<% if user_signed_in? %>
-  <h2> Hello <%= current_user.email %> </h2>
-  <%= link_to 'Sign out', destroy_user_session_path, data: { 'turbo-method': :delete } %>
-<% else %>
-  <%= link_to 'Sign in', new_user_session_path %>
-<% end %>
+
+<!----------------------------banner-------------------------->
+<div id="carouselExample" class="carousel slide">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="<%= asset_path('banner_images/img1.jpg') %>" class="d-block " alt="..." style="width:100%;height:360px">
+    </div>
+    <div class="carousel-item">
+      <img src="<%= asset_path('banner_images/img2.jpg') %>" class="d-block " alt="..." style="width:100%;height:360px">
+    </div>
+    <div class="carousel-item">
+      <img src="<%= asset_path('banner_images/img3.jpg') %>" class="d-block " alt="..." style="width:100%;height:360px">
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
+<div class="alert alert-warning" role="alert" style="border-radius: 0;">
+  Announcement:
+</div>
+<div class="empty-rectangular-box mb-3" role="alert" style="border-radius: 0; text-align: center; border: 1px solid #e3e3e3; background-color: #f3f3f3">
+  Winners Feedback
+</div>
+
+<div class="row justify-content-center">
+  <div class="col-md-3">
+    <div class="card h-100">
+      <img src="<%= asset_path('banner_images/img4.jpg') %>" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional
+          content. This content is a little bit longer.</p>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="card h-100">
+      <img src="<%= asset_path('banner_images/img5.jpg') %>" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <p class="card-text">This is a short card.</p>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="card h-100">
+      <img src="<%= asset_path('banner_images/img6.jpg') %>" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional
+          content.</p>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="card h-100">
+      <img src="<%= asset_path('banner_images/img7.jpg') %>" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional
+          content. This content is a little bit longer.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="empty-rectangular-box mb-3 mt-3" role="alert" style="border-radius: 0; text-align: center; border: 1px solid #c5c5c5; background-color: lightgrey">
+  Coming soon
+</div>
+
+<div class="row justify-content-center">
+  <div class="col-md-3">
+    <div class="card h-100">
+      <img src="<%= asset_path('banner_images/img8.jpg') %>" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional
+          content. This content is a little bit longer.</p>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="card h-100">
+      <img src="<%= asset_path('banner_images/img9.jpg') %>" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <p class="card-text">This is a short card.</p>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="card h-100">
+      <img src="<%= asset_path('banner_images/img10.jpg') %>" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional
+          content.</p>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="card h-100">
+      <img src="<%= asset_path('banner_images/img11.jpg') %>" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional
+          content. This content is a little bit longer.</p>
+      </div>
+    </div>
+  </div>
+</div>

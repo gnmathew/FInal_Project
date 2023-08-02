@@ -1,0 +1,19 @@
+<% if flash[:alert] %>
+  <div class="alert alert-success d-flex align-items-center mb-sm-1" role="alert">
+    <svg class="bi flex-shrink-0 me-2" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
+    <div>
+      <%= alert %>
+    </div>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+
+<% end %>
+<% if flash[:notice] %>
+  <div class="alert alert-warning d-flex align-items-center mb-sm-1" role="alert">
+    <svg class="bi flex-shrink-0 me-2" role="img" aria-label="Warning:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+    <div>
+      <%= notice %>on
+    </div>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+<% end %>

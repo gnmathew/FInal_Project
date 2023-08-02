@@ -10,7 +10,14 @@ class Clients::SessionsController < Devise::SessionsController
 
   # POST /resource/sign_in
   # def create
+  #   # Continue with the default create action for clients
   #   super
+  # end
+  def create
+      super
+  end
+  # def create
+  #     super
   # end
 
   # DELETE /resource/sign_out
@@ -24,8 +31,9 @@ class Clients::SessionsController < Devise::SessionsController
   # def configure_sign_in_params
   #   devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
   # end
-  def after_sign_in_path_for(resource)
+  # def after_sign_in_path_for(resource)
+  #
+  #   client_root_path
+  # end
 
-    client_root_path
-  end
 end

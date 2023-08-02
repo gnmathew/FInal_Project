@@ -3,7 +3,8 @@ Rails.application.routes.draw do
   constraints(ClientDomainConstraint.new) do
     root 'clients/home#index', as: 'client_root'
     devise_for :users, controllers: {
-      sessions: 'clients/sessions'
+      sessions: 'clients/sessions',
+      registrations: 'clients/registrations'
     }
 
   end
@@ -11,8 +12,8 @@ Rails.application.routes.draw do
   constraints(AdminDomainConstraint.new) do
     root 'admins/home#index', as: 'admin_root'
     devise_for :users, controllers: {
-      sessions: 'admins/sessions',
-      registrations: 'admins/registrations'
+      sessions: 'admins/sessions'
+
     }, as: :admin
 
   end
