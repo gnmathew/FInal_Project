@@ -1,4 +1,3 @@
-class Admins::HomeController < ApplicationController
-  def index
-  end
+class Admins::HomeController < Admins::BaseController
+  def index;end
 end

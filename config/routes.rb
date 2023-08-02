@@ -1,19 +1,22 @@
 Rails.application.routes.draw do
 
   constraints(ClientDomainConstraint.new) do
-    root 'clients/home#index', as: 'client_root'
-    devise_for :users, controllers: {
-      sessions: 'clients/sessions'
-    }
-
+    scope module: :clients do
+      root 'home#index'
+      resource :profile, only: [:show, :edit, :update]
+      devise_for :users, controllers: {
+        sessions: 'clients/sessions',
+        registrations: 'clients/registrations'
+      }
+    end
   end
 
   constraints(AdminDomainConstraint.new) do
-    root 'admins/home#index', as: 'admin_root'
-    devise_for :users, controllers: {
-      sessions: 'admins/sessions',
-      registrations: 'admins/registrations'
-    }, as: :admin
-
+    scope module: :admins do
+      root 'home#index', as: :admin_root
+      devise_for :users, controllers: {
+        sessions: 'admins/sessions'
+      }, as: :admin
+    end
   end
 end
