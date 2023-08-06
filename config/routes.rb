@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   constraints(AdminDomainConstraint.new) do
     scope module: :admins do
       root 'home#index', as: :admin_root
-      devise_for :users, controllers: {
+      devise_for :users, skip: [:registrations], controllers: {
         sessions: 'admins/sessions'
       }, as: :admin
     end

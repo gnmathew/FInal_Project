@@ -1,8 +1,26 @@
 class Clients::ProfilesController < ApplicationController
-  def index
+  before_action :authenticate_user!
+  def show
   end
 
-  def show
+  def edit
+    @client = current_user
+  end
+
+  def update
+    @client = current_user
+
+    if @client.update(client_params)
+      redirect_to profile_path, notice: "Successfully Updated"
+    else
+      render :edit
+    end
+  end
+
+  private
+
+  def client_params
+    params.require(:user).permit(:username, :email, :phone_number, :image)
   end
 
 end

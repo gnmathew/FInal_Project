@@ -13,4 +13,6 @@ class User < ApplicationRecord
     countries: [:ph]
   }
   attr_accessor :promoter_name
+
+  mount_uploader :image, ImageUploader
 end

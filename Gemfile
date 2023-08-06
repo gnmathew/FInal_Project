@@ -11,6 +11,8 @@ gem "sprockets-rails"
 
 gem 'devise'
 
+gem 'carrierwave'
+
 gem 'phonelib'
 # Use mysql as the database for Active Record
 gem "mysql2", "~> 0.5"
