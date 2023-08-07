@@ -13,6 +13,10 @@ gem 'devise'
 
 gem 'carrierwave'
 
+gem 'rest-client'
+
+gem 'active_model_serializers'
+
 gem 'phonelib'
 # Use mysql as the database for Active Record
 gem "mysql2", "~> 0.5"

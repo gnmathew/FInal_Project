@@ -1,0 +1,28 @@
+<div class="d-flex flex-column align-items-center justify-content-center" style="height: 700px;">
+  <ul class="list-group text-center" style="width: 750px;">
+    <div style="margin-top: 80px;">
+      <h3 style="color: darkorange" >My Address</h3>
+    </div>
+    <% current_user.addresses.each do |address| %>
+      <li class="list-group-item mb-1 " style="background-color: #d9d9d9; border-radius: 15px; border-color: black">
+        <%= "#{address.region&.name} #{address.province&.name} #{address.city&.name} #{address.barangay&.name} #{address&.street_address}" %>
+        <p>Genre: <%= address.genre%></p>
+        <% if address.is_default %>
+          <h6 style="color: darkgreen">Default Address</h6>
+        <% end %>
+        <div class="d-flex justify-content-center gap-1 mt-2">
+          <%= link_to 'Edit', edit_address_path(address), class: "btn btn-outline-secondary btn-sm me-2", style: "width: 300px" if user_signed_in? && address.user == current_user %>
+          <%= button_to 'Delete', address_path(address), class: "btn btn-outline-danger btn-sm ms-2",style: "width: 300px", method: :delete, data: { confirm: "Are you sure?" } %>
+        </div>
+      </li>
+    <% end %>
+    <div>
+      <%= link_to 'Add Address', new_address_path, class: "btn ", style: "width: 150px; background-color: darkorange" %>
+      <%= link_to 'Back', profile_path, class: "btn btn-secondary", style: "width: 150px;" %>
+    </div>
+  </ul>
+</div>
+
+
+
+

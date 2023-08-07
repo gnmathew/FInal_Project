@@ -10,17 +10,22 @@ class Clients::ProfilesController < ApplicationController
   def update
     @client = current_user
 
-    if @client.update(client_params)
+    if @client.update(update_without_password_params)
       redirect_to profile_path, notice: "Successfully Updated"
     else
-      render :edit
+      @client.update(update_with_password_params)
+      redirect_to profile_path, notice: "Successfully Updated"
     end
   end
 
   private
 
-  def client_params
-    params.require(:user).permit(:username, :email, :phone_number, :image)
+  def update_without_password_params
+    params.require(:user).permit(:phone_number, :username, :image)
+  end
+
+  def update_with_password_params
+    params.require(:user).permit(:username, :email, :phone_number, :image, :password)
   end
 
 end

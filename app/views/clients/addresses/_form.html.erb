@@ -1,0 +1,68 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-8 col-lg-7">
+      <div class="p-4 mt-5">
+        <%= form_with model: @address, data: { controller: :location } do |form| %>
+          <% if @address.errors.any? %>
+            <ul>
+              <% @address.errors.each do |error| %>
+                <li><%= error.full_message %></li>
+              <% end %>
+            </ul>
+          <% end %>
+          <div class="form-group">
+            <%= form.label :genre, style: "color: darkorange" %><br>
+            <%= form.radio_button :genre, 0, checked: @address.home? %>
+            <%= form.label "address_genre_home", "Home", style: "color: white" %>
+            <%= form.radio_button :genre, 1, checked: @address.office? %>
+            <%= form.label "address_genre_office", "Office", style: "color: white" %>
+          </div>
+          <div class="form-group">
+            <%= form.label :Set_as_Default, style: "color: darkorange" %><br>
+            <%= form.radio_button :is_default, true %>
+            <%= form.label "address_is_default", "Yes", style: "color: white" %>
+          </div>
+          <div class="form-group">
+            <%= form.label :street_address, style: "color: darkorange" %>
+            <%= form.text_field :street_address, class: "form-control mb-3 mt-3", placeholder: "Street Address" %>
+          </div>
+          <div class="form-group">
+            <%= form.label :address_region_id, style: "color  : darkorange"%>
+            <%= form.collection_select :address_region_id,
+                                       Address::Region.all, :id, :name,
+                                       { prompt: 'Please select region' },
+                                       data: { location_target: 'selectedRegionId', action: 'change->location#fetchProvinces' }, class: "form-control"%>
+          </div>
+          <div class="form-group">
+            <%= form.label :address_province_id, style: "color: darkorange" %>
+            <%= form.collection_select :address_province_id,
+                                       [], nil, nil,
+                                       { prompt: 'Please select province' },
+                                       data: { location_target: 'selectedProvinceId', action: 'change->location#fetchCities' }, class: "form-control mb-3" %>
+          </div>
+          <div class="form-group">
+            <%= form.label :address_city_id, style: "color: darkorange" %>
+            <%= form.collection_select :address_city_id,
+                                       [], nil, nil,
+                                       { prompt: 'Please select city' },
+                                       data: { location_target: 'selectedCityId', action: 'change->location#fetchBarangays' }, class: "form-control mb-3"%>
+          </div>
+          <div class="form-group">
+            <%= form.label :address_barangay_id, style: "color: darkorange" %>
+            <%= form.collection_select :address_barangay_id,
+                                       [], nil, nil,
+                                       { prompt: 'Please select barangay' },
+                                       data: { location_target: 'selectedBarangayId' }, class: "form-control mb-3" %>
+          </div>
+          <div class="w-100 mt-3">
+            <div class="d-flex justify-content-center">
+              <%= form.submit class: "btn w-50 me-3" , style: "background-color: darkorange" %>
+              <%= link_to "Cancel", addresses_path, class: "btn w-50 ms-3", style: "background-color: grey; color: white"%>
+            </div>
+          </div>
+        <% end %>
+      </div>
+
+    </div>
+  </div>
+</div>
