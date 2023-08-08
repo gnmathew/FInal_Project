@@ -16,9 +16,9 @@
       </div>
       <div class="offcanvas-body">
         <% if current_user && current_user.image.present? %>
-          <%= image_tag current_user.image.url, class: "avatar-image", style: "width: 200px; height: 200px;" %>
+          <%= image_tag current_user.image.url, class: "avatar-image mb-3", style: "width: 200px; height: 200px; border-radius: 10px; " %>
         <% else %>
-          <%= image_tag "avatar.png", class: "avatar-image", style: "width: 200px; height: 200px;" %>
+          <%= image_tag "avatar.png", class: "avatar-image mb-3", style: "width: 200px; height: 200px; border-radius: 10px;" %>
         <% end %>
 
         <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">

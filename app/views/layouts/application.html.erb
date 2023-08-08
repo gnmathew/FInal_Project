@@ -9,6 +9,17 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            setTimeout(function() {
+                $('#notice, #alert').remove();
+            }, 2000); // 2000 milliseconds = 2 seconds
+        });
+    </script>
+
+
+
     <style>
       body {
           background: black;
@@ -48,28 +59,19 @@
     <%= render partial: 'clients/shared/client_navbar' %>
     <main class="position-h">
       <div class="container pt-lg-5" style="margin-top: 30px;">
-        <% if flash[:alert] %>
-          <div class="alert alert-primary d-flex align-items-center mb-sm-1" role="alert" style="height: 20px;">
-            <svg class="bi flex-shrink-0 me-2" role="img" aria-label="Success:">
-              <use xlink:href="#check-circle-fill"/>
-            </svg>
-            <div>
-              <%= alert %>
-            </div>
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-          </div>
-        <% end %>
         <% if flash[:notice] %>
-          <div class="alert alert-warning d-flex align-items-center mb-sm-1" role="alert">
-            <svg class="bi flex-shrink-0 me-2" role="img" aria-label="Warning:">
-              <use xlink:href="#exclamation-triangle-fill"/>
-            </svg>
-            <div>
-              <%= notice %>on
-            </div>
+          <div id="notice" class="alert alert-info mt-3 alert-dismissible" role="alert">
+            <%= notice %>
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
           </div>
         <% end %>
+        <% if flash[:alert] %>
+          <div id="alert" class="alert alert-danger mt-3 alert-dismissible" role="alert">
+            <%= alert %>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        <% end %>
+
         <%= yield %>
       </div>
     </main>

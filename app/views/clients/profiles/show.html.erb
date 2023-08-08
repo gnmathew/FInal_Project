@@ -1,6 +1,6 @@
 <div class="d-flex justify-content-center align-items-center" style="height: 80vh;">
   <div class="card text-center" style="width: 50%; border: none">
-    <div class="card-header" style="background-color: darkorange">
+    <div class="card-header" style="background-color: #737373">
       My Profile
     </div>
     <div class="card-body text-start d-flex flex-wrap align-items-center justify-content-between" style="background-color: #1c1c1c;">
@@ -29,11 +29,11 @@
 
       <div class="w-100 mt-3">
         <div class="d-flex justify-content-center">
-          <a href="#" class="btn btn-warning w-100">Cash in</a>
+          <a href="#" class="btn btn-outline-success w-100">Cash in</a>
         </div>
         <div class="d-flex justify-content-center gap-1 mt-2">
           <%= link_to "Edit Profile", edit_profile_path, class: "btn w-50", style: "background-color: darkorange" %>
-          <a href="#" class="btn w-50" style="background-color: darkorange">Address</a>
+          <%= link_to "Address", addresses_path, class: "btn w-50", style: "background-color: darkorange" %>
         </div>
       </div>
     </div>
