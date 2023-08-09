@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>App</title>
+    <title>Admin</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -11,8 +11,9 @@
   </head>
 
   <body>
+    <div class="container">
 
-    <%= render partial: 'admins/shared/admin_style' %>
-    <%= yield %>
+      <%= yield %>
+    </div>
   </body>
 </html>
