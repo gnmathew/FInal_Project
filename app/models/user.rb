@@ -17,4 +17,7 @@ class User < ApplicationRecord
   attr_accessor :promoter_name
 
   mount_uploader :image, ImageUploader
+
+  has_many :children, class_name: 'User', foreign_key: 'parent_id'
+  belongs_to :parent, class_name: 'User', optional: true
 end

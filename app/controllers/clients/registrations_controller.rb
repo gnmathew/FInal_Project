@@ -14,6 +14,7 @@ class Clients::RegistrationsController < Devise::RegistrationsController
       promoter_email = cookies[:promoter_email]
       if promoter_email && (promoter = User.find_by(email: promoter_email))
         user.update(parent_id: promoter.id)
+        promoter.update(children_members: (promoter.children_members || 0) + 1)
       end
     end
   end

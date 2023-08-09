@@ -24,6 +24,9 @@
           <p class="nav-link active" aria-current="page">
             Coins: <%= current_user ? current_user.coins : '' %>
           </p>
+          <p class="nav-link active" aria-current="page">
+            Referrals: <%= current_user ? current_user.children_members : '' %>
+          </p>
         </div>
       </div>
 
