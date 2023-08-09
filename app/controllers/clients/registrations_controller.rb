@@ -9,10 +9,14 @@ class Clients::RegistrationsController < Devise::RegistrationsController
     super
   end
 
-  # POST /resource
-  # def create
-  #   super
-  # end
+  def create
+    super do |user|
+      promoter_email = cookies[:promoter_email]
+      if promoter_email && (promoter = User.find_by(email: promoter_email))
+        user.update(parent_id: promoter.id)
+      end
+    end
+  end
 
   # GET /resource/edit
   def edit

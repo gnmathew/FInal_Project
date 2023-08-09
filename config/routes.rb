@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   constraints(ClientDomainConstraint.new) do
     scope module: :clients do
       root 'home#index'
+      get 'users/invite-people', to: 'users#invite_people'
       resource :profile, only: [:show, :edit, :update]
       resources :addresses, except: :show
       devise_for :users, controllers: {
