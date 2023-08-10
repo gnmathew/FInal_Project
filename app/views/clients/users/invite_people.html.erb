@@ -5,6 +5,6 @@
     <div class="bg-white d-flex justify-content-center align-items-center rounded-circle ms-auto me-auto" style="width: 200px; height: 200px;">
       <%= raw @qrcode_svg %>
     </div>
-    <p class="text-white" style="margin-right: 10px; margin-top: 10px;"><span style="color: darkorange">Invite URL: </span><%= new_user_registration_path(promoter: @promoter_email) %></p>
+    <p class="text-white" style="margin-right: 10px; margin-top: 10px;"><span style="color: darkorange">Invite URL: </span><%= @promoter_email %></p>
   </div>
 </div>
