@@ -1,0 +1,13 @@
+<div class="d-flex justify-content-center align-items-center" style="height: 80vh; ">
+  <div class="card text-center" style="width: 50%; border-color: #2c2c2c">
+    <div class="card-body" style="background-color: #2c2c2c;">
+      <%= form_with(model: category, url: url, method: method, data: { turbo: false}) do |form|  %>
+        <div>
+          <h3><%= form.label :name, style: "color:white" %></h3>
+        </div>
+        <%= form.text_field :name %>
+        <%= form.submit class: "btn btn-warning" %>
+      <% end %>
+    </div>
+  </div>
+</div>

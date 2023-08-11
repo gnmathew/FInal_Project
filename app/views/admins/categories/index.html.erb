@@ -1,0 +1,27 @@
+
+<div class="container" style="margin-top: 170px;">
+  <div style="background-color: #ffd500; border-style: solid; border-color: #ffd500; text-align: center;">
+    <%= link_to 'New Category', new_category_path, style: "float: right; vertical-align: center", class: "btn btn-light mt-1 me-2" %>
+    <h3 class="justify-content-center mt-2">All Category</h3>
+
+  </div>
+  <table class="table table-bordered table-dark">
+    <thead class="table-secondary">
+    <tr>
+      <th>Name</th>
+      <th>Action</th>
+    </tr>
+    <tbody>
+    <% @categories.each do |category| %>
+      <tr>
+        <td><%= category.name %></td>
+        <td>
+          <%= link_to "Edit Category", edit_category_path(category), class: "btn btn-secondary w-25 mb-2 me-2", style: "float:left" %>
+          <%= button_to "Delete", category_path(category), method: :delete , class: "btn btn-danger w-25 mb-2 ms-2"%>
+        </td>
+      </tr>
+    <% end %>
+    </tbody>
+    </thead>
+  </table>
+</div>

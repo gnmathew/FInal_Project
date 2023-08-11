@@ -7,6 +7,8 @@ class Item < ApplicationRecord
 
   mount_uploader :image, ImageUploader
 
+  belongs_to :category
+
   def destroy
     update(deleted_at: Time.current)
   end

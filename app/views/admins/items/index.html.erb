@@ -15,30 +15,30 @@
       <th>Offline At</th>
       <th>Start At</th>
       <th>Status</th>
-      <th>deleted_at</th>
+      <th>Category</th>
       <th>Action</th>
     </tr>
     </thead>
     <tbody>
-    <% @items.each do |item| %>
-      <tr>
-        <td><%= image_tag item.image.url,class: "avatar-image", style: "width: 150px; height: 150px;" if item.image.present? %></td>
-        <td><%= item.name %></td>
-        <td><%= item.quantity %></td>
-        <td><%= item.minimum_bets %></td>
-        <td><%= item.batch_count %></td>
-        <td><%= item.online_at %></td>
-        <td><%= item.offline_at %></td>
-        <td><%= item.start_at %></td>
-        <td><%= item.status %></td>
-        <td><%= item.deleted_at %></td>
-        <td>
-          <%= link_to 'Edit', edit_item_path(item), class: "btn btn-light w-100 mb-1" %>
-          <%= link_to 'Show', item_path(item), class: "btn btn-secondary w-100 mb-1" %>
-          <%= button_to 'Delete', item_path(item), method: :delete, class: "btn btn-danger w-100 mb-1" %>
-        </td>
-      </tr>
-    <% end %>
+      <% @items.each do |item| %>
+        <tr>
+          <td><%= image_tag item.image.url,class: "avatar-image", style: "width: 150px; height: 150px;" if item.image.present? %></td>
+          <td><%= item.name %></td>
+          <td><%= item.quantity %></td>
+          <td><%= item.minimum_bets %></td>
+          <td><%= item.batch_count %></td>
+          <td><%= item.online_at %></td>
+          <td><%= item.offline_at %></td>
+          <td><%= item.start_at %></td>
+          <td><%= item.status %></td>
+          <td><%= item.category.name %></td>
+          <td>
+            <%= link_to 'Edit', edit_item_path(item), class: "btn btn-light w-100 mb-1" %>
+            <%= link_to 'Show', item_path(item), class: "btn btn-secondary w-100 mb-1" %>
+            <%= button_to 'Delete', item_path(item), method: :delete, class: "btn btn-danger w-100 mb-1" %>
+          </td>
+        </tr>
+      <% end %>
     </tbody>
   </table>
 </div>

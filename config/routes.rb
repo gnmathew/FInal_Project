@@ -17,6 +17,7 @@ Rails.application.routes.draw do
       root 'home#index', as: :admin_root
       resources :users, only: [:index]
       resources :items
+      resources :categories, except: [:show]
       devise_for :users, skip: [:registrations], controllers: {
         sessions: 'admins/sessions'
       }, as: :admin

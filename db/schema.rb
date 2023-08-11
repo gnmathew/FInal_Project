@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_11_020814) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_11_022049) do
   create_table "address_barangays", charset: "utf8mb4", force: :cascade do |t|
     t.bigint "city_id"
     t.string "code"
@@ -66,6 +66,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_11_020814) do
     t.index ["user_id"], name: "index_addresses_on_user_id"
   end
 
+  create_table "categories", charset: "utf8mb4", force: :cascade do |t|
+    t.string "name"
+    t.datetime "deleted_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "items", charset: "utf8mb4", force: :cascade do |t|
     t.string "image"
     t.string "name"
@@ -80,6 +87,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_11_020814) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.datetime "deleted_at"
+    t.bigint "category_id"
+    t.index ["category_id"], name: "index_items_on_category_id"
   end
 
   create_table "users", charset: "utf8mb4", force: :cascade do |t|
