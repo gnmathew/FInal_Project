@@ -1,0 +1,63 @@
+<div class="d-flex justify-content-center align-items-center" style="height: 80vh; ">
+  <div class="card text-center" style="width: 50%; border-color: #2c2c2c">
+    <div class="card-body" style="background-color: #2c2c2c;">
+      <h3 style="color: darkorange">Items</h3>
+      <%= form_with(model: item, url: url, method: method, data: {turbo: false}) do |form| %>
+
+        <% if item.errors.any? %>
+          <ul>
+            <% item.errors.each do |error| %>
+              <li class="white"><%= error.full_message %></li>
+            <% end %>
+          </ul>
+        <% end %>
+
+        <div class="form-group mb-3">
+          <%= form.file_field :image, class: "form-control" %>
+        </div>
+
+        <div class="form-group mb-3">
+          <%= form.text_field :name, class: "form-control", placeholder: "Name" %>
+        </div>
+
+        <div class="form-group mb-3">
+          <%= form.number_field :quantity, class: "form-control", placeholder: 'Quantity' %>
+        </div>
+
+        <div class="form-group mb-3">
+          <%= form.number_field :minimum_bets, class: "form-control", placeholder: "Minimum Bets" %>
+        </div>
+
+        <div class="form-group mb-3">
+          <%= form.number_field :batch_count, class: "form-control", placeholder: "Batch Count" %>
+        </div>
+
+        <div class="form-group mb-3">
+          <%= form.label :online_at, style: "color: darkorange" %>
+          <%= form.date_field :online_at, class: "form-control", placeholder: "Online at" %>
+        </div>
+
+        <div class="form-group mb-3">
+          <%= form.label :offline_at, style: "color: darkorange" %>
+          <%= form.date_field :offline_at, class: "form-control", placeholder: "Offline at" %>
+        </div>
+
+        <div class="form-group mb-3">
+          <%= form.label :start_at, style: "color: darkorange" %>
+          <%= form.date_field :start_at, class: "form-control", placeholder: "Start at" %>
+        </div>
+
+        <div class="form-group mb-3">
+          <%= form.label :status, style: "color: darkorange" %><br>
+          <% Item.statuses.each do |status, value| %>
+            <%= form.radio_button :status, status, checked: item.status == status %>
+            <%= form.label status.humanize, style: "color: white" %>
+          <% end %>
+        </div>
+
+        <%= form.submit class: "btn btn-warning"%>
+
+      <% end %>
+    </div>
+  </div>
+</div>

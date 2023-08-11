@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-
   constraints(ClientDomainConstraint.new) do
     scope module: :clients do
       root 'home#index'
@@ -17,6 +16,7 @@ Rails.application.routes.draw do
     scope module: :admins do
       root 'home#index', as: :admin_root
       resources :users, only: [:index]
+      resources :items
       devise_for :users, skip: [:registrations], controllers: {
         sessions: 'admins/sessions'
       }, as: :admin
