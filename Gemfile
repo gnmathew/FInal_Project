@@ -11,6 +11,8 @@ gem "sprockets-rails"
 
 gem 'devise'
 
+gem 'aasm'
+
 gem 'carrierwave'
 
 gem 'rest-client'
