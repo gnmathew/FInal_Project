@@ -1,5 +1,5 @@
 class Admins::ItemsController < Admins::BaseController
-  before_action :set_item, only: [:show, :edit, :update, :destroy]
+  before_action :set_item, except: [:index, :new, :create]
   def index
     @items = Item.all
   end
@@ -40,6 +40,41 @@ class Admins::ItemsController < Admins::BaseController
       flash[:alert] = 'Delete failed'
     end
     redirect_to items_path
+  end
+
+  def start
+    if @item.start!
+      @item.update(quantity: @item.quantity - 1, batch_count: @item.batch_count + 1)
+      redirect_to items_path, notice: 'Item started successfully.'
+    else
+      redirect_to items_path, alert: 'Unable to start item.'
+    end
+  end
+
+  def pause
+    if @item.pause!
+      redirect_to items_path, notice: 'Item paused.'
+    else
+      redirect_to items_path, alert: 'Unable to pause item.'
+    end
+  end
+
+  def cancel
+    if @item.cancel!
+      redirect_to items_path, notice: 'Item cancelled.'
+    else
+      redirect_to items_path, alert: 'Unable to cancel item.'
+    end
+
+  end
+
+  def end
+    if @item.end!
+      redirect_to items_path, notice: 'Item ended.'
+    else
+      redirect_to items_path, alert: 'Unable to end item.'
+    end
+
   end
 
   private

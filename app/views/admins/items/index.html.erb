@@ -17,6 +17,8 @@
       <th>Start At</th>
       <th>Status</th>
       <th>Category</th>
+      <th>Buttons</th>
+      <th>State</th>
       <th>Action</th>
     </tr>
     </thead>
@@ -31,12 +33,31 @@
           <td><%= item.online_at %></td>
           <td><%= item.offline_at %></td>
           <td><%= item.start_at %></td>
-          <td><%= item.status %></td>
+          <td><%= item.status.capitalize %></td>
           <td><%= item.category.name %></td>
           <td>
-            <%= link_to 'Edit', edit_item_path(item), class: "btn btn-light w-100 mb-1" %>
-            <%= link_to 'Show', item_path(item), class: "btn btn-secondary w-100 mb-1" %>
-            <%= button_to 'Delete', item_path(item), method: :delete, class: "btn btn-danger w-100 mb-1" %>
+            <%= link_to 'Edit', edit_item_path(item), class: "btn btn-outline-light w-100 mb-1" %>
+            <%= link_to 'Show', item_path(item), class: "btn btn-outline-secondary w-100 mb-1" %>
+            <%= button_to 'Delete', item_path(item), method: :delete, class: "btn btn-outline-danger w-100 mb-1" %>
+          </td>
+          <td><%= item.state.capitalize %></td>
+          <td>
+            <% if item.may_start? %>
+              <%= button_to 'Start', start_item_path(item), method: :patch, class: "btn btn-warning w-100 mb-1" %>
+            <% end %>
+
+            <% if item.may_pause? %>
+              <%= button_to 'Pause', pause_item_path(item), method: :patch, class: "btn btn-light w-100 mb-1" %>
+            <% end %>
+
+            <% if item.may_cancel? %>
+              <%= button_to 'Cancel', cancel_item_path(item), method: :patch, class: "btn btn-secondary w-100 mb-1" %>
+            <% end %>
+
+            <% if item.may_end? %>
+              <%= button_to 'End', end_item_path(item), method: :patch, class: "btn btn-danger w-100 mb-1" %>
+            <% end %>
+
           </td>
         </tr>
       <% end %>

@@ -16,8 +16,15 @@ Rails.application.routes.draw do
     scope module: :admins do
       root 'home#index', as: :admin_root
       resources :users, only: [:index]
-      resources :items
       resources :categories, except: [:show]
+      resources :items do
+        member do
+          patch :start
+          patch :pause
+          patch :end
+          patch :cancel
+        end
+      end
       devise_for :users, skip: [:registrations], controllers: {
         sessions: 'admins/sessions'
       }, as: :admin
