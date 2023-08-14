@@ -3,6 +3,7 @@ Rails.application.routes.draw do
     scope module: :clients do
       root 'home#index'
       get 'users/invite-people', to: 'users#invite_people'
+      resources :lottery
       resource :profile, only: [:show, :edit, :update]
       resources :addresses, except: :show
       devise_for :users, controllers: {
