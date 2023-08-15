@@ -6,6 +6,8 @@ class User < ApplicationRecord
 
   has_many :addresses
 
+  has_many :bets
+
   enum role: { client: 0, admin: 1 }
 
   validates :phone_number, phone: {

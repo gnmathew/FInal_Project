@@ -1,0 +1,36 @@
+<!-- app/views/admin/bets/_search_form.html.erb -->
+<%= form_tag bets_path, method: :get do %>
+  <div class="field">
+    <%= label_tag :serial_number, 'Serial Number' %>
+    <%= text_field_tag :serial_number %>
+  </div>
+
+  <div class="field">
+    <%= label_tag :item_name, 'Item Name' %>
+    <%= text_field_tag :item_name %>
+  </div>
+
+  <div class="field">
+    <%= label_tag :email, 'Email' %>
+    <%= text_field_tag :email %>
+  </div>
+
+  <div class="field">
+    <%= label_tag :state, 'State' %>
+    <%= select_tag :state, options_for_select(Bet.aasm.states.map(&:name)) %>
+  </div>
+
+  <div class="field">
+    <%= label_tag :start_date, 'Start Date' %>
+    <%= date_field_tag :start_date %>
+  </div>
+
+  <div class="field">
+    <%= label_tag :end_date, 'End Date' %>
+    <%= date_field_tag :end_date %>
+  </div>
+
+  <div class="actions">
+    <%= submit_tag 'Search' %>
+  </div>
+<% end %>

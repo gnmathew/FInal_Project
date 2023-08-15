@@ -26,6 +26,13 @@ Rails.application.routes.draw do
           patch :cancel
         end
       end
+      resources :bets, only: [:index] do
+        member do
+          patch :win
+          patch :cancel
+          patch :lose
+        end
+      end
       devise_for :users, skip: [:registrations], controllers: {
         sessions: 'admins/sessions'
       }, as: :admin

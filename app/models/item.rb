@@ -5,6 +5,8 @@ class Item < ApplicationRecord
 
   belongs_to :category
 
+  has_many :bets, dependent: :restrict_with_exception
+
   aasm column: :state do
     state :pending, initial: true
     state :starting
@@ -26,13 +28,17 @@ class Item < ApplicationRecord
     end
 
     event :cancel do
-      transitions from: [:starting, :paused, :ended], to: :cancelled
+      transitions from: [:starting, :paused, :ended], to: :cancelled, after: :cancel_bets
     end
 
   end
 
   def can_start?
     quantity.positive? && offline_at > Time.now && status == 'active'
+  end
+
+  def cancel_bets
+    bets.update(state: :cancelled)
   end
 
   default_scope { where(deleted_at: nil) }
