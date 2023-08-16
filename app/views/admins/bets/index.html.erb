@@ -1,33 +1,30 @@
-<h1>Admins::Bets#index</h1>
-<br>
-<br>
-<br>
-<br>
-
-<%= render 'search_form' %>
-
-<table>
-  <thead>
-  <tr>
-    <th>Item</th>
-    <th>Client</th>
-    <th>Batch_Count</th>
-    <th>Coins</th>
-    <th>State</th>
-    <th>Serial Number</th>
-  </tr>
-  </thead>
-  <tbody>
-  <% @bets.each do |bet| %>
+<%= render 'search_form'%>
+<div>
+  <table class="table table-bordered table-dark">
+    <thead class="table-secondary">
     <tr>
-      <td><%= bet.item.name %></td>
-      <td><%= bet.user.email %></td>
-      <td><%= bet.batch_count %></td>
-      <td><%= bet.coins %></td>
-      <td><%= bet.state %></td>
-      <td><%= bet.serial_number %></td>
-      <td><%= button_to 'Cancel', cancel_bet_path(bet), method: :patch if bet.betting? %></td>
+      <th>Item</th>
+      <th>Client</th>
+      <th>Batch_Count</th>
+      <th>Coins</th>
+      <th>State</th>
+      <th>Serial Number</th>
+      <th>Action</th>
     </tr>
-  <% end %>
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+    <% @bets.each do |bet| %>
+      <tr>
+        <td><%= bet.item.name %></td>
+        <td><%= bet.user.email %></td>
+        <td><%= bet.batch_count %></td>
+        <td><%= bet.coins %></td>
+        <td><%= bet.state %></td>
+        <td><%= bet.serial_number %></td>
+        <td><%= button_to 'Cancel', cancel_bet_path(bet), method: :patch, class: "btn btn-outline-danger" if bet.betting? %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>
+
