@@ -1,0 +1,40 @@
+<div class="justify-content-center d-flex align-content-center" style="margin-top: 90px">
+  <div class="col-md-6 ">
+    <div class="card" style="width: 95%;">
+      <%= image_tag @item.image.url, class: "card-img-top", style: "width: 150px; height: 150px;" if @item.image.present? %>
+      <div class="card-body text-center">
+        <h5 class="card-title"><%= @item.name %></h5>
+      </div>
+      <div class="card-footer">
+        <small class="text-body-secondary"><%= @item.online_at %></small>
+      </div>
+      <div class="progress" role="progressbar" aria-label="Warning example" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
+        <% if @bet_percentage >= 100 %>
+          <div class="progress-bar text-bg-warning" style="width: 100%"><%= '100%' %></div>
+        <% else %>
+          <div class="progress-bar text-bg-warning" style="width: <%= "#{@bet_percentage}" %>%"><%= "#{@bet_percentage}%" %></div>
+        <% end %>
+      </div>
+      <div class="justify-content-center mt-3">
+        <%= form_with(model: @bet, url: lottery_index_path, method: :post, data: { turbo: false }) do |form| %>
+          <%= form.number_field :bet_count, class: "form-control" %>
+          <%= form.hidden_field :item_id, value: @item.id %>
+          <%= form.submit "SUBMIT ", class: "btn btn-outline-warning w-100 mt-2" %>
+        <% end %>
+      </div>
+      <div class="text-center mt-5 mb-3">
+        <div>
+          <h5>Serial Number</h5>
+        </div>
+        <% @user_bets&.each do |user_bet| %>
+          <p class="card-text"><%= user_bet.serial_number %></p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+

@@ -16,18 +16,22 @@
 <% if @items.present? %>
   <div class="row">
     <% @items.each do |item| %>
-      <div class="col-md-6 d-flex align-items-center justify-content-center mb-lg-5 ">
-        <div class="card" style="width: 95%;">
-          <%= image_tag item.image.url, class: "card-img-top", style: "width: 150px; height: 150px;" if item.image.present? %>
-          <div class="card-body">
-            <h5 class="card-title"><%= item.name %></h5>
-            <p class="card-text"><%= item.status.capitalize %></p>
-          </div>
-          <div class="card-footer">
-            <small class="text-body-secondary"><%= item.online_at %></small>
+      <%= link_to lottery_path(item) do %>
+        <div class="col-md-6 d-flex align-items-center justify-content-center mb-lg-5 ">
+
+          <div class="card" style="width: 95%;">
+            <%= image_tag item.image.url, class: "card-img-top", style: "width: 150px; height: 150px;" if item.image.present? %>
+            <div class="card-body">
+              <h5 class="card-title"><%= item.name %></h5>
+              <p class="card-text"><%= item.status.capitalize %></p>
+            </div>
+            <div class="card-footer">
+              <small class="text-body-secondary"><%= item.online_at %></small>
+            </div>
           </div>
         </div>
-      </div>
+      <% end %>
+
     <% end %>
   </div>
 <% else %>

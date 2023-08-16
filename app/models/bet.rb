@@ -5,6 +5,7 @@ class Bet < ApplicationRecord
   belongs_to :user
 
   after_create :assign_serial_number
+  after_create :subtract_coin
 
   aasm column: :state do
     state :betting, initial: true
@@ -39,6 +40,4 @@ class Bet < ApplicationRecord
     serial_number = "#{date_format}-#{item.id}-#{item.batch_count}-#{number_count}"
     update(serial_number: serial_number)
   end
-
-
 end
