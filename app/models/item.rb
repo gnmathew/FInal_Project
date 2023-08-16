@@ -15,7 +15,7 @@ class Item < ApplicationRecord
     state :cancelled
 
     event :start do
-      transitions from: [:pending, :ended, :cancelled], to: :starting, if: :can_start?
+      transitions from: [:pending, :ended, :cancelled], to: :starting, after: :item_start, if: :can_start?
       transitions from: :paused, to: :starting
     end
 
@@ -28,18 +28,11 @@ class Item < ApplicationRecord
     end
 
     event :cancel do
-      transitions from: [:starting, :paused, :ended], to: :cancelled, after: :cancel_bets
+      transitions from: [:starting, :paused, :ended], to: :cancelled, after: [:cancel_bets,:restore_quantity]
     end
 
   end
 
-  def can_start?
-    quantity.positive? && offline_at > Time.now && status == 'active'
-  end
-
-  def cancel_bets
-    bets.update(state: :cancelled)
-  end
 
   default_scope { where(deleted_at: nil) }
 
@@ -52,4 +45,28 @@ class Item < ApplicationRecord
   def destroy
     update(deleted_at: Time.current)
   end
+
+
+  private
+
+  def can_start?
+    quantity.positive? && offline_at > Time.now && status == 'active'
+  end
+
+  def item_start
+    self.update(quantity: self.quantity - 1, batch_count: self.batch_count + 1)
+  end
+
+  def cancel_bets
+    bets.where(batch_count: batch_count).each do |bet|
+      if bet.may_cancel?
+        bet.cancel!
+      end
+    end
+  end
+
+  def restore_quantity
+    @item.update(quantity: @item.quantity + 1)
+  end
+
 end

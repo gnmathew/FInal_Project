@@ -44,7 +44,6 @@ class Admins::ItemsController < Admins::BaseController
 
   def start
     if @item.start!
-      @item.update(quantity: @item.quantity - 1, batch_count: @item.batch_count + 1)
       redirect_to items_path, notice: 'Item started successfully.'
     else
       redirect_to items_path, alert: 'Unable to start item.'
