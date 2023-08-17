@@ -5,8 +5,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :addresses
-
   has_many :bets
+  has_many :winners
 
   enum role: { client: 0, admin: 1 }
 

@@ -3,6 +3,7 @@ class Bet < ApplicationRecord
 
   belongs_to :item
   belongs_to :user
+  has_one :winner
 
   after_create :assign_serial_number
   after_create :subtract_coin

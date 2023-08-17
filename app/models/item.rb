@@ -4,8 +4,8 @@ class Item < ApplicationRecord
   validates :image, :name, :quantity, :minimum_bets, :batch_count, :online_at, :offline_at, :start_at , presence: true
 
   belongs_to :category
-
   has_many :bets, dependent: :restrict_with_exception
+  has_many :winners
 
   aasm column: :state do
     state :pending, initial: true
