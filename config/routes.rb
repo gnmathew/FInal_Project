@@ -18,6 +18,16 @@ Rails.application.routes.draw do
       root 'home#index', as: :admin_root
       resources :users, only: [:index]
       resources :categories, except: [:show]
+      resources :winners, only: [:index] do
+        member do
+          patch :submit
+          patch :pay
+          patch :ship
+          patch :deliver
+          patch :publish
+          patch :remove_publish
+        end
+      end
       resources :items do
         member do
           patch :start
