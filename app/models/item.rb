@@ -24,7 +24,7 @@ class Item < ApplicationRecord
     end
 
     event :end do
-      transitions from: :starting, to: :ended
+      transitions from: :starting, to: :ended, guard: :reached_minimum_bets?, after: :pick_winner
     end
 
     event :cancel do
@@ -66,7 +66,24 @@ class Item < ApplicationRecord
   end
 
   def restore_quantity
-    @item.update(quantity: @item.quantity + 1)
+    update(quantity: quantity + 1)
+  end
+
+  def reached_minimum_bets?
+    bets.where(batch_count: batch_count).count >= minimum_bets
+  end
+
+  def pick_winner
+    winning_bet = bets.where(batch_count: batch_count).sample
+    losers_bets = bets.where(batch_count: batch_count) - [winning_bet]
+    winning_bet.win!
+
+    losers_bets.each do |loser_bet|
+      loser_bet.lose!
+    end
+
+    Winner.create(user: winning_bet.user, item: winning_bet.item,
+                              item_batch_count: batch_count, bet: winning_bet)
   end
 
 end
