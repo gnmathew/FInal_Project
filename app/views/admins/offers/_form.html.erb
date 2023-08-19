@@ -1,0 +1,56 @@
+<div class="d-flex justify-content-center align-items-center" style="height: 100vh; ">
+  <div class="card text-center" style="width: 50%; border-color: #1a1821">
+    <div class="card-body" style="background-color: #1a1821;">
+      <h3 style="color: darkorange">Offers</h3>
+      <%= form_with(model: offer, url: url, method: method, data: {turbo: false}) do |form| %>
+
+        <% if offer&.errors&.any? %>
+          <ul>
+            <% offer.errors.each do |error| %>
+              <li class="white"><%= error.full_message %></li>
+            <% end %>
+          </ul>
+        <% end %>
+
+        <div class="form-group mb-3">
+          <%= form.file_field :image, class: "form-control" %>
+        </div>
+
+        <div class="form-group mb-3">
+          <%= form.text_field :name, class: "form-control", placeholder: "Name" %>
+        </div>
+
+        <div class="form-group mb-3">
+          <%= form.number_field :amount, class: "form-control", placeholder: "Amount" %>
+        </div>
+
+        <div class="form-group mb-3">
+          <%= form.number_field :coin, class: "form-control", placeholder: "Coin" %>
+        </div>
+
+        <div class="form-group mb-3">
+          <%= form.label :genre, style: "color: darkorange" %><br>
+          <% Offer.genres.each do |genre, value| %>
+            <label>
+              <%= form.radio_button :genre, genre, checked: offer&.genre == genre %>
+              <%= form.label genre&.humanize, style: "color: white" %>
+            </label>
+          <% end %>
+        </div>
+
+        <div class="form-group mb-3">
+          <%= form.label :status, style: "color: darkorange" %><br>
+          <% Offer.statuses.each do |status, value| %>
+            <label>
+              <%= form.radio_button :status, status, checked: offer&.status == status %>
+              <%= form.label status&.humanize, style: "color: white" %>
+            </label>
+          <% end %>
+        </div>
+
+        <%= form.submit class: "btn btn-warning"%>
+
+      <% end %>
+    </div>
+  </div>
+</div>
