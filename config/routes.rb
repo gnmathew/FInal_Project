@@ -4,6 +4,7 @@ Rails.application.routes.draw do
       root 'home#index'
       get 'users/invite-people', to: 'users#invite_people'
       resources :lottery
+      resources :shop
       resource :profile, only: [:show, :edit, :update]
       resources :addresses, except: :show
       devise_for :users, controllers: {

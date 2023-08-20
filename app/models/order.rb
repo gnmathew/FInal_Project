@@ -6,10 +6,9 @@ class Order < ApplicationRecord
 
   after_create :assign_serial_number
 
-  validates :amount, presence: true, if: :genre_deposit?
+  validates :amount, presence: true, if: :deposit?
 
-  enum genre: {deposit: 0, increase: 1, deduct: 2, bonus: 3, share: 4}
-
+  enum genre: { deposit: 0, increase: 1, deduct: 2, bonus: 3, share: 4 }
 
   aasm column: :state do
     state :pending, initial: true
@@ -33,46 +32,39 @@ class Order < ApplicationRecord
 
   private
 
-  def genre_deposit?
-    genre == "deposit"
-  end
-
-  def genre_deduct?
-    genre == "deduct"
-  end
   def increase_user_coins_paid
-    unless genre_deduct?
-      user.update(coins: user.coins + value)
+    unless deduct?
+      user.update(coins: user.coins + coin)
     end
   end
 
   def decrease_user_coins_paid
-    if genre_deduct?
-      user.update(coins: user.coins - value)
+    if deduct?
+      user.update(coins: user.coins - coin)
     end
   end
 
   def increase_total_deposit
-    if genre_deposit?
-      user.update(total_deposit: user.total_deposit + value)
+    if deposit?
+      user.update(total_deposit: user.total_deposit + amount)
     end
   end
 
   def decrease_user_coins_cancelled
-    unless genre_deduct?
-      user.update(coins: user.coins - 1)
+    unless deduct?
+      user.update(coins: user.coins - coin)
     end
   end
 
   def increase_user_coins_cancelled
-    if genre_deduct?
-      user.update(coins: user.coins + 1)
+    if deduct?
+      user.update(coins: user.coins + coin)
     end
   end
 
   def decrease_total_deposit
-    if genre_deposit?
-      user.update(total_deposit: user.total_deposit - 1)
+    if deposit?
+      user.update(total_deposit: user.total_deposit - amount)
     end
   end
 

@@ -12,7 +12,7 @@
           <%= link_to "Lottery", lottery_index_path, class: "nav-link active", style: "padding: 10px 20px;color: #ffc400"%>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#" style="padding: 10px 20px;color: #ffc400">Shop</a>
+          <%= link_to "Shop", shop_index_path, class: "nav-link active", style: "padding: 10px 20px;color: #ffc400"%>
         </li>
         <% if user_signed_in? %>
           <li class="nav-item">

@@ -1,0 +1,22 @@
+<div class="text-start mb-5 mt-5">
+  <h2 style="color: darkorange">Offers</h2>
+</div>
+
+<div class="row">
+  <% @offers.each do |offer| %>
+    <div class="col-md-6 mb-4">
+      <%= link_to shop_path(offer) do %>
+        <div class="card" style="width: 100%;">
+          <%= image_tag offer.image.url, class: "card-img-top", style: "width: 150px; height: 150px;" if offer.image.present? %>
+          <div class="card-body">
+            <h5 class="card-title"><%= offer.name %></h5>
+            <p class="card-text"><%= offer.status.capitalize %></p>
+          </div>
+          <div class="card-footer">
+            <small class="text-body-secondary"><%= offer.genre %></small>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>
