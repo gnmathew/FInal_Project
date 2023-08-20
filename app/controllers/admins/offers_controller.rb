@@ -59,6 +59,6 @@ class Admins::OffersController < Admins::BaseController
   end
 
   def offer_params
-    params.require(:offer).permit(:image, :name, :genre, :status, :amount, :coin)
+    params.require(:offer).permit(:image, :name,:amount, :coin, :genre, :status)
   end
 end
