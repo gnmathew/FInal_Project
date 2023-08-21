@@ -20,6 +20,13 @@ Rails.application.routes.draw do
       resources :users, only: [:index]
       resources :categories, except: [:show]
       resources :offers
+      resources :orders, only: [:index] do
+        member do
+          patch :pay
+          patch :cancel
+          patch :submit
+        end
+      end
       resources :winners, only: [:index] do
         member do
           patch :submit

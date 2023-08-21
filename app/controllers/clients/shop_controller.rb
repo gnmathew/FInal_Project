@@ -19,6 +19,7 @@ class Clients::ShopController < ApplicationController
     @order.coin = @offer.coin
     @order.user = current_user
     if @order.save
+      @order.submit!
       flash[:notice] = "You have successfully purchased"
     else
       flash[:alert] = @order.errors.full_messages.join(', ')
