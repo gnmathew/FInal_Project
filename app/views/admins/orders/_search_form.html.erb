@@ -1,0 +1,50 @@
+<div class="container", style="margin-top: 90px; margin-bottom: 50px;">
+  <%= form_tag orders_path, method: :get, class: 'form-inline' do %>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group mb-2">
+          <%= label_tag :serial_number, 'Serial Number', class: 'mr-2' %>
+          <%= text_field_tag :serial_number, nil, class: 'form-control' %>
+        </div>
+
+        <div class="form-group mb-2">
+          <%= label_tag :email, 'Email', class: 'mr-2' %>
+          <%= text_field_tag :email, nil, class: 'form-control' %>
+        </div>
+
+        <div class="form-group mb-2">
+          <%= label_tag :genre, 'Genre', class: 'mr-2' %>
+          <%= select_tag :genre, options_for_select(Order.genres), prompt: 'Select genre', class: 'form-control' %>
+        </div>
+
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group mb-2">
+          <%= label_tag :state, 'State', class: 'mr-2' %>
+          <%= select_tag :state, options_for_select(Order.aasm.states.map(&:name)), prompt: 'Select State', class: 'form-control' %>
+        </div>
+
+        <div class="form-group mb-2">
+          <%= label_tag :start_date, 'Start Date', class: 'mr-2' %>
+          <%= date_field_tag :start_date, nil, class: 'form-control' %>
+        </div>
+
+        <div class="form-group mb-2">
+          <%= label_tag :end_date, 'End Date', class: 'mr-2' %>
+          <%= date_field_tag :end_date, nil, class: 'form-control' %>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="form-group mb-2">
+        <%= label_tag :genre, 'Offer Genre', class: 'mr-2' %>
+        <%= select_tag :genre, options_for_select(Offer.genres), prompt: 'Select Offer', class: 'form-control' %>
+      </div>
+      <div class="col-md-12 text-center">
+        <%= submit_tag 'Search', class: 'btn btn-outline-secondary w-100' %>
+      </div>
+    </div>
+  <% end %>
+</div>
