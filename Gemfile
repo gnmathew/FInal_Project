@@ -21,6 +21,8 @@ gem 'active_model_serializers'
 
 gem 'rqrcode'
 
+gem 'kaminari'
+
 gem 'phonelib'
 # Use mysql as the database for Active Record
 gem "mysql2", "~> 0.5"
