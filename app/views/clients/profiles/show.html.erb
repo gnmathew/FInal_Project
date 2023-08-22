@@ -1,4 +1,4 @@
-<div class="d-flex justify-content-center align-items-center" style="height: 80vh;">
+<div class="d-flex justify-content-center align-items-center" style="height: 65vh; margin-bottom: 5px;">
   <div class="card text-center" style="width: 50%; border: none">
     <div class="card-header" style="background-color: #737373">
       My Profile
@@ -13,19 +13,19 @@
 
         <div class="ms-3" style="color: white">
           <p class="nav-link active" aria-current="page">
-            Username: <%= current_user ? current_user.username : '' %>
+            Username: <%= current_user.username %>
           </p>
           <p class="nav-link active" aria-current="page">
-            Email: <%= current_user ? current_user.email : '' %>
+            Email: <%= current_user.email %>
           </p>
           <p class="nav-link active" aria-current="page">
-            Phone Number: <%= current_user ? current_user.phone_number : '' %>
+            Phone Number: <%= current_user.phone_number %>
           </p>
           <p class="nav-link active" aria-current="page">
-            Coins: <%= current_user ? current_user.coins : '' %>
+            Coins: <%= current_user.coins %>
           </p>
           <p class="nav-link active" aria-current="page">
-            Referrals: <%= current_user ? current_user.children_members : '' %>
+            Referrals: <%= current_user.children_members %>
           </p>
         </div>
       </div>
@@ -40,7 +40,114 @@
         </div>
       </div>
     </div>
-
-
   </div>
 </div>
+
+<div>
+  <div class="d-flex justify-content-center align-items-center" style="height: 5vh;">
+    <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+      <div class="text-center mb-5">
+        <%= link_to "Order History", profile_path(order_history: "all"),class: "btn btn-outline-warning#{' active' if params[:order_history] == 'all'}", type: "radio", for: "btnradio2", name: "btnradio" %>
+        <%= link_to "Lottery History", profile_path(lottery_history: "all"),class: "btn btn-outline-warning#{' active' if params[:lottery_history] == 'all'}", type: "radio", for: "btnradio2", name: "btnradio" %>
+        <%= link_to "Winning History", profile_path(winning_history: "all"),class: "btn btn-outline-warning#{' active' if params[:winning_history] == 'all'}", type: "radio", for: "btnradio2", name: "btnradio" %>
+        <%= link_to "Invitation History", profile_path(invite_history: "all"),class: "btn btn-outline-warning#{' active' if params[:invite_history] == 'all'}", type: "radio", for: "btnradio2", name: "btnradio" %>
+      </div>
+    </div>
+  </div>
+  <% if @order_histories.present? %>
+    <% @order_histories.each do |order_history| %>
+      <div class="card ms-auto me-auto" style="width: 50%; margin-bottom: 5px;">
+        <div class="card-body" style="background-color: #b2babb">
+          <h6 class="card-title mb-2 text-body-secondary text-center">Order ID: <%= order_history.id %></h6>
+          <h6 class="card-subtitle mb-5">Serial Number: <%= order_history.serial_number %></h6>
+          <p class="card-text">Amount: <%= order_history.amount %></p>
+          <p class="card-text">Coins: <%= order_history.coin %></p>
+          <p class="card-text">State: <%= order_history.state.humanize %></p>
+          <p class="card-text mb-2 text-body-secondary">Created at: <%= order_history.created_at %></p>
+        </div>
+      </div>
+    <% end %>
+    <div class="d-flex justify-content-center align-items-center" style="height: 10vh;">
+      <div class="btn-group " role="group" aria-label="Basic radio toggle button group">
+        <div class="text-center mb-5">
+          <%= link_to_prev_page @order_histories, 'Previous' , class: "btn btn-secondary"%>
+          <%= link_to_next_page @order_histories, 'Next' , class: "btn btn-warning"%>
+        </div>
+      </div>
+    </div>
+
+
+<% elsif @lottery_histories.present? %>
+    <% @lottery_histories.each do |lottery_history| %>
+      <div class="card ms-auto me-auto" style="width: 50%; margin-bottom: 5px;">
+        <div class="card-body" style="background-color: #b2babb">
+          <h6 class="card-title mb-2 text-body-secondary text-center">Bet ID: <%= lottery_history.id %></h6>
+          <h6 class="card-subtitle mb-5">Serial Number: <%= lottery_history.serial_number %></h6>
+          <p class="card-text">Batch Count: <%= lottery_history.batch_count %></p>
+          <p class="card-text">Coins: <%= lottery_history.coins %></p>
+          <p class="card-text">State: <%= lottery_history.state.humanize %></p>
+          <p class="card-text mb-2 text-body-secondary">Created at: <%= lottery_history.created_at %></p>
+        </div>
+      </div>
+    <% end %>
+    <div class="d-flex justify-content-center align-items-center" style="height: 10vh;">
+      <div class="btn-group " role="group" aria-label="Basic radio toggle button group">
+        <div class="text-center mb-5">
+          <%= link_to_prev_page @lottery_histories, 'Previous' ,class: "btn btn-secondary"%>
+          <%= link_to_next_page @lottery_histories, 'Next', class: "btn btn-warning" %>
+        </div>
+      </div>
+    </div>
+
+
+  <% elsif @winning_histories.present? %>
+    <% @winning_histories.each do |winning_history| %>
+      <div class="card ms-auto me-auto" style="width: 50%; margin-bottom: 5px;">
+        <p class="card-body" style="background-color: #b2babb">
+          <h6 class="card-title mb-2 text-body-secondary text-center">Winner ID: <%= winning_history.id %></h6>
+          <h6 class="card-subtitle mb-5">Serial Number: <%= winning_history.serial_number %></h6>
+          <p class="card-text">Batch Count: <%= winning_history.item_batch_count %></p>
+          <p class="card-text">Price: <%= winning_history.price %></p>
+          <p class="card-text mb-2 text-body-secondary">Paid at: <%= winning_history.paid_at %></p>
+          <p class="card-text">State: <%= winning_history.state.humanize %></p>
+          <p class="card-text mb-2 text-body-secondary">Created at: <%= winning_history.created_at %></p>
+        </div>
+      </div>
+    <% end %>
+    <div class="d-flex justify-content-center align-items-center" style="height: 10vh;">
+      <div class="btn-group " role="group" aria-label="Basic radio toggle button group">
+        <div class="text-center mb-5">
+          <%= link_to_prev_page @winning_histories, 'Previous', class: "btn btn-secondary" %>
+          <%= link_to_next_page @winning_histories, 'Next Page', class: "btn btn-warning" %>
+        </div>
+      </div>
+    </div>
+
+
+  <% elsif @invite_histories.present? %>
+    <% @invite_histories.each do |invite_history| %>
+      <div class="card ms-auto me-auto" style="width: 50%; margin-bottom: 5px;">
+        <div class="card-body" style="background-color: #b2babb">
+          <h6 class="card-title mb-2 text-body-secondary text-center">Child Member ID: <%= invite_history.id %></h6>
+          <h6 class="card-subtitle mb-5">Email: <%= invite_history.email %></h6>
+          <p class="card-text">Phone Number: <%= invite_history.phone_number %></p>
+          <p class="card-text">Username: <%= invite_history.username %></p>
+          <p class="card-text mb-2 text-body-secondary">Created at: <%= invite_history.created_at %></p>
+        </div>
+      </div>
+    <% end %>
+    <div class="d-flex justify-content-center align-items-center" style="height: 10vh;">
+      <div class="btn-group " role="group" aria-label="Basic radio toggle button group">
+        <div class="text-center mb-5">
+          <%= link_to_prev_page @invite_histories, 'Previous', class: "btn btn-secondary" %>
+          <%= link_to_next_page @invite_histories, 'Next Page', class: "btn btn-warning" %>
+        </div>
+      </div>
+    </div>
+  <% else %>
+    <h3 class="text-center">NO AVAILABLE HISTORY</h3>
+  <% end %>
+</div>
+
+
+

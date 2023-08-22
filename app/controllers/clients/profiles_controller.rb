@@ -1,6 +1,19 @@
 class Clients::ProfilesController < ApplicationController
   before_action :authenticate_user!
   def show
+    if params[:order_history].present?
+      @order_histories = current_user.orders.page(params[:page]).per(2)
+    end
+    if params[:lottery_history].present?
+      @lottery_histories = current_user.bets.page(params[:page]).per(2)
+    end
+    if params[:winning_history].present?
+      @winning_histories = current_user.winners.page(params[:page]).per(2)
+    end
+    if params[:invite_history].present?
+      @invite_histories = current_user.children_members&.page(params[:page])&.per(2)
+    end
+
   end
 
   def edit
