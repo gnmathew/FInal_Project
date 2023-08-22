@@ -5,6 +5,7 @@ Rails.application.routes.draw do
       get 'users/invite-people', to: 'users#invite_people'
       resources :lottery
       resources :shop
+      resources :prize, only: [:show,:update]
       resource :profile, only: [:show, :edit, :update]
       resources :addresses, except: :show
       devise_for :users, controllers: {

@@ -1,0 +1,33 @@
+
+<div class="text-center mt-xxl-5">
+  <h2 style="color: darkorange">Claim Your Prize</h2>
+  <h6 style="color: #c08f50">Choose your address</h6>
+</div>
+
+
+<%= form_with(model: @winner, url: prize_path(@winner), method: :patch, data: { turbo: false }) do |form| %>
+  <% if current_user.addresses.present? %>
+    <div class="d-flex flex-column align-items-center justify-content-center" style="height: 600px;">
+      <ul class="list-group text-center" style="width: 750px;">
+        <% current_user.addresses.each do |address| %>
+          <li class="list-group-item mb-1 " style="background-color: #d9d9d9; border-radius: 15px; border-color: black">
+            <%= form.radio_button :address_id, address.id, checked: address.is_default %>
+            <%= "#{address.region&.name} #{address.province&.name} #{address.city&.name} #{address.barangay&.name} #{address&.street_address}" %>
+            <p>Genre: <%= address.genre%></p>
+
+            <% if address.is_default %>
+              <h6 style="color: darkgreen">Default Address</h6>
+            <% end %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  <%else %>
+    <div class="d-flex justify-content-center gap-1 mt-xxl-5">
+      <%= link_to "Create Address" , new_address_path , class: "btn btn-outline-secondary btn-sm me-2", style: "width: 300px"%>
+    </div>
+  <% end %>
+  <div class="d-flex justify-content-center">
+    <%= form.submit "SUBMIT ", class: "btn btn-outline-warning w-50 mt-2" %>
+  </div>
+<% end %>

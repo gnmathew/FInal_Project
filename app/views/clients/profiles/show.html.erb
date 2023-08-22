@@ -103,14 +103,16 @@
   <% elsif @winning_histories.present? %>
     <% @winning_histories.each do |winning_history| %>
       <div class="card ms-auto me-auto" style="width: 50%; margin-bottom: 5px;">
-        <p class="card-body" style="background-color: #b2babb">
+        <div class="card-body" style="background-color: #b2babb">
           <h6 class="card-title mb-2 text-body-secondary text-center">Winner ID: <%= winning_history.id %></h6>
-          <h6 class="card-subtitle mb-5">Serial Number: <%= winning_history.serial_number %></h6>
           <p class="card-text">Batch Count: <%= winning_history.item_batch_count %></p>
           <p class="card-text">Price: <%= winning_history.price %></p>
           <p class="card-text mb-2 text-body-secondary">Paid at: <%= winning_history.paid_at %></p>
           <p class="card-text">State: <%= winning_history.state.humanize %></p>
           <p class="card-text mb-2 text-body-secondary">Created at: <%= winning_history.created_at %></p>
+          <div class="text-center">
+            <%= link_to "Claim", prize_path(winning_history), class: "btn btn-success w-50" %>
+          </div>
         </div>
       </div>
     <% end %>
