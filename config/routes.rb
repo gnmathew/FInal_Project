@@ -4,8 +4,8 @@ Rails.application.routes.draw do
       root 'home#index'
       get 'users/invite-people', to: 'users#invite_people'
       patch 'profile/cancel-order', to: 'profiles#cancel_order'
-      resources :lottery
-      resources :shop
+      resources :lottery, only: [:index, :show, :create]
+      resources :shop, only: [:index, :show, :create]
       resources :prize, only: [:show,:update]
       resources :feedback, only: [:show, :update]
       resources :shares, only: [:index, :show]
