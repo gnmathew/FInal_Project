@@ -6,6 +6,7 @@ Rails.application.routes.draw do
       resources :lottery
       resources :shop
       resources :prize, only: [:show,:update]
+      resources :feedback, only: [:show, :update]
       resource :profile, only: [:show, :edit, :update]
       resources :addresses, except: :show
       devise_for :users, controllers: {

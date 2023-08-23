@@ -111,7 +111,8 @@
           <p class="card-text">State: <%= winning_history.state.humanize %></p>
           <p class="card-text mb-2 text-body-secondary">Created at: <%= winning_history.created_at %></p>
           <div class="text-center">
-            <%= link_to "Claim", prize_path(winning_history), class: "btn btn-success w-50" %>
+            <%= link_to "Claim", prize_path(winning_history), class: "btn btn-success w-50 mt-2" if winning_history.may_claim? %>
+            <%= link_to "Share Feedback", feedback_path(winning_history), class: "btn btn-outline-warning w-50 mt-2" if winning_history.may_share? %>
           </div>
         </div>
       </div>
@@ -150,6 +151,3 @@
     <h3 class="text-center">NO AVAILABLE HISTORY</h3>
   <% end %>
 </div>
-
-
-
