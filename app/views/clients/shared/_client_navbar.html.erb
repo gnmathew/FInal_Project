@@ -5,9 +5,13 @@
       <a class="nav-item text-decoration-none text-white me-2" href="#">Coins</a>
       <a class="nav-item text-decoration-none text-white me-2" href="#">Claim</a>
       <a class="nav-item text-decoration-none text-white me-2" href="#">Language</a>
-      <button class="navbar-toggler border-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+      <% if current_user %>
+        <button class="navbar-toggler border-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      <% else %>
+        <a><%= link_to 'Sign in', new_user_session_path, class: "btn btn-warning" %></a>
+      <% end %>
     </ul>
     <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
       <div class="offcanvas-header">
@@ -23,13 +27,13 @@
 
         <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
           <li class="nav-item">
-            Username: <%= current_user ? current_user.username : '' %>
+            Username: <%= current_user&.username %>
           </li>
           <li class="nav-item">
-            Email: <%= current_user ? current_user.email : '' %>
+            Email: <%= current_user&.email %>
           </li>
           <li class="nav-item">
-            Coins: <%= current_user ? current_user.coins : '' %>
+            Coins: <%= current_user&.coins %>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -41,11 +45,7 @@
               <li>
                 <hr class="dropdown-divider">
               </li>
-              <% if user_signed_in? %>
-                <li><%= link_to 'Sign out', destroy_user_session_path, class: "dropdown-item", data: { 'turbo-method': :delete } %></li>
-              <% else %>
-                <li><%= link_to 'Sign in', new_user_session_path, class: "dropdown-item" %></li>
-              <% end %>
+              <li><%= link_to 'Sign out', destroy_user_session_path, class: "dropdown-item", data: { 'turbo-method': :delete } %></li>
             </ul>
           </li>
         </ul>

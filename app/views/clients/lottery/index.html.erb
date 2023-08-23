@@ -1,3 +1,4 @@
+<%= render partial: 'clients/shared/banner' %>
 <div class="text-center mt-5 mb-5">
   <h1 style="color:darkorange">Lottery Page</h1>
 </div>
@@ -16,10 +17,9 @@
 <% if @items.present? %>
   <div class="row">
     <% @items.each do |item| %>
-      <%= link_to lottery_path(item) do %>
-        <div class="col-md-6 d-flex align-items-center justify-content-center mb-lg-5 ">
-
-          <div class="card" style="width: 95%;">
+      <div class="col-md-6 mb-4 ">
+        <%= link_to lottery_path(item) do %>
+          <div class="card" style="width: 100%;">
             <%= image_tag item.image.url, class: "card-img-top", style: "width: 150px; height: 150px;" if item.image.present? %>
             <div class="card-body">
               <h5 class="card-title"><%= item.name %></h5>
@@ -29,9 +29,8 @@
               <small class="text-body-secondary"><%= item.online_at %></small>
             </div>
           </div>
-        </div>
-      <% end %>
-
+        <% end %>
+      </div>
     <% end %>
   </div>
 <% else %>
