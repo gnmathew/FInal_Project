@@ -7,6 +7,7 @@ Rails.application.routes.draw do
       resources :shop
       resources :prize, only: [:show,:update]
       resources :feedback, only: [:show, :update]
+      resources :shares, only: [:index, :show]
       resource :profile, only: [:show, :edit, :update]
       resources :addresses, except: :show
       devise_for :users, controllers: {

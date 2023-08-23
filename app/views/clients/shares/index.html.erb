@@ -1,0 +1,22 @@
+<div class="text-center mt-xxl-5">
+  <h2 style="color: darkorange">Share List</h2>
+</div>
+
+<% @shares.each do |share| %>
+  <%= link_to share_path(share) do %>
+    <div class="card mb-3 me-auto ms-auto text-center" style="max-width: 540px; height: 20vh;margin-top: 70px;">
+      <div class="row g-0">
+        <div class="col-md-4">
+          <%= image_tag share.image.url, class: "avatar-image", style: "width: 170px; height: 170px;" if share.image.present? %>
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h4 class="card-title"><%= share.user.username %></h4>
+            <p class="card-text"><%= share.comment %></p>
+            <p class="card-text"><small class="text-body-secondary"><%= share.updated_at %></small></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+<% end %>
