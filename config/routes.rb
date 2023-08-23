@@ -3,6 +3,7 @@ Rails.application.routes.draw do
     scope module: :clients do
       root 'home#index'
       get 'users/invite-people', to: 'users#invite_people'
+      patch 'profile/cancel-order', to: 'profiles#cancel_order'
       resources :lottery
       resources :shop
       resources :prize, only: [:show,:update]

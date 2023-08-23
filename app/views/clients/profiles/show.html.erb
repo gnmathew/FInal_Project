@@ -64,6 +64,9 @@
           <p class="card-text">Coins: <%= order_history.coin %></p>
           <p class="card-text">State: <%= order_history.state.humanize %></p>
           <p class="card-text mb-2 text-body-secondary">Created at: <%= order_history.created_at %></p>
+          <div class="text-center">
+            <%= button_to 'Cancel Order', profile_cancel_order_path(id: order_history.id), method: :patch, class: "btn btn-outline-danger w-50 mb-1", data: {turbo: false} if order_history.may_cancel?%>
+          </div>
         </div>
       </div>
     <% end %>

@@ -31,6 +31,17 @@ class Clients::ProfilesController < ApplicationController
     end
   end
 
+  def cancel_order
+    @order = current_user.orders.where(state: [:submitted, :pending]).find(params[:id])
+    if @order.may_cancel?
+      @order.cancel!
+      flash[:notice] = "You have successfully cancelled your order"
+    else
+      flash[:alert] = "Failed to cancel your order!"
+    end
+    redirect_to profile_path
+  end
+
   private
 
   def update_without_password_params
