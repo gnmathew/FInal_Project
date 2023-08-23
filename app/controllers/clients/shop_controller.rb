@@ -14,7 +14,7 @@ class Clients::ShopController < ApplicationController
 
     @offer = Offer.find_by(id: params[:order][:offer_id])
     @order = Order.new(offer_id: @offer.id)
-    @order.genre = "increase"
+    @order.genre = "deposit"
     @order.amount = @offer.amount
     @order.coin = @offer.coin
     @order.user = current_user
