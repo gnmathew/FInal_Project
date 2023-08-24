@@ -2,7 +2,7 @@ class Order < ApplicationRecord
   include AASM
 
   belongs_to :user
-  belongs_to :offer
+  belongs_to :offer, optional: true
 
   after_create :assign_serial_number
 
@@ -26,6 +26,7 @@ class Order < ApplicationRecord
 
     event :pay do
       transitions from: :submitted, to: :paid, after: [:increase_user_coins_paid, :decrease_user_coins_paid, :increase_total_deposit]
+      transitions from: :pending, to: :paid, after: [:increase_user_coins_paid, :decrease_user_coins_paid]
     end
   end
 

@@ -10,11 +10,12 @@
         <th>Parent Email</th>
         <th>Email</th>
         <th>Total Deposit</th>
-  <!--      <th>Member Total Deposit</th>-->
+        <th>Member Total Deposit</th>
         <th>Coins</th>
-  <!--      <th>Total Used Coins</th>-->
+        <th>Total Used Coins</th>
         <th>Children Members</th>
         <th>Phone Number</th>
+        <th>Admin Balance Operate</th>
       </tr>
     </thead>
     <tbody>
@@ -23,11 +24,12 @@
           <td><%= client.parent&.email %></td>
           <td><%= client.email %></td>
           <td><%= client.total_deposit %></td>
-  <!--        <td><%#= client.member_total_deposits %></td>-->
+          <td><%#= client.member_total_deposits %></td>
           <td><%= client.coins %></td>
-  <!--        <td><%#= client.total_used_coins %></td>-->
+          <td><%#= client.total_used_coins %></td>
           <td><%= client.children_members %></td>
           <td><%= client.phone_number %></td>
+          <td><%= link_to "Balance Operate", user_new_genre_order_path(user_id: client.id, genre: :increase), class: "btn btn-warning" %></td>
         </tr>
       <% end %>
     </tbody>

@@ -6,7 +6,7 @@ Rails.application.routes.draw do
       patch 'profile/cancel-order', to: 'profiles#cancel_order'
       resources :lottery, only: [:index, :show, :create]
       resources :shop, only: [:index, :show, :create]
-      resources :prize, only: [:show,:update]
+      resources :prize, only: [:show, :update]
       resources :feedback, only: [:show, :update]
       resources :shares, only: [:index, :show]
       resource :profile, only: [:show, :edit, :update]
@@ -21,7 +21,10 @@ Rails.application.routes.draw do
   constraints(AdminDomainConstraint.new) do
     scope module: :admins do
       root 'home#index', as: :admin_root
-      resources :users, only: [:index]
+      resources :users, path: 'users/clients', only: [:index] do
+        get 'orders/:genre/new', to: 'orders#new', as: :new_genre_order
+        post 'orders/:genre', to: 'orders#create', as: :create_genre_order
+      end
       resources :categories, except: [:show]
       resources :offers
       resources :orders, only: [:index] do

@@ -1,0 +1,54 @@
+<div class="card text-center" style="margin-top: 15%">
+  <div class="card-header">
+    <ul class="nav nav-tabs card-header-tabs">
+      <li class="nav-item">
+        <div class="d-flex justify-content-center align-items-center" style="height: 15vh;">
+          <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+            <div class="text-center mb-5">
+              <%= link_to "Increase", user_new_genre_order_path(genre: :increase), class: "btn btn-outline-warning#{' active' if params[:genre] == 'increase'}", type: "radio", for: "btnradio2", name: "btnradio" %>
+              <%= link_to "Deduct", user_new_genre_order_path(genre: :deduct), class: "btn btn-outline-warning#{' active' if params[:genre] == 'deduct'}", type: "radio", for: "btnradio2", name: "btnradio" %>
+              <%= link_to "Bonus", user_new_genre_order_path(genre: :bonus), class: "btn btn-outline-warning#{' active' if params[:genre] == 'bonus'}", type: "radio", for: "btnradio2", name: "btnradio" %>
+            </div>
+          </div>
+        </div>
+        <div>
+          <h4>
+            Admin Balance Operate
+          </h4>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div class="card-body w-100">
+    <% if params[:genre] == "increase" %>
+      <div class="row">
+        <div class="col-md-6">
+          <%= render partial: 'form', locals: { order: @order, url: user_create_genre_order_path, method: :post } %>
+        </div>
+        <div class="col-md-6">
+          <%= render partial: 'user_credentials', locals: { order: @order, url: user_create_genre_order_path, method: :post } %>
+        </div>
+      </div>
+    <% end %>
+    <% if params[:genre] == "deduct" %>
+      <div class="row">
+        <div class="col-md-6">
+          <%= render partial: 'form', locals: { order: @order, url: user_create_genre_order_path, method: :post } %>
+        </div>
+        <div class="col-md-6">
+          <%= render partial: 'user_credentials', locals: { order: @order, url: user_create_genre_order_path, method: :post } %>
+        </div>
+      </div>
+    <% end %>
+    <% if params[:genre] == "bonus" %>
+      <div class="row">
+        <div class="col-md-6">
+          <%= render partial: 'form', locals: { order: @order, url: user_create_genre_order_path, method: :post } %>
+        </div>
+        <div class="col-md-6">
+          <%= render partial: 'user_credentials', locals: { order: @order, url: user_create_genre_order_path, method: :post } %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
