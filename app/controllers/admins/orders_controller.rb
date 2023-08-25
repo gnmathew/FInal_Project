@@ -6,6 +6,30 @@ class Admins::OrdersController < Admins::BaseController
     @total_orders = @orders.sum { |order| order.amount }
     @orders = @orders.page(params[:page]).per(5)
     @sub_total = @orders.sum { |order| order.amount }
+
+    if params[:serial_number].present?
+      @orders = @orders.where(serial_number: params[:serial_number])
+    end
+
+    if params[:email].present?
+      @orders = @orders.joins(:user).where("users.email LIKE ?", "%#{params[:email]}%")
+    end
+
+    if params[:state].present?
+      @orders = @orders.where(state: params[:state])
+    end
+
+    if params[:genre].present?
+    @orders = @orders.where(genre: params[:genre])
+  end
+
+    if params[:start_date].present?
+      @orders = @orders.where("created_at >= ?", params[:start_date])
+    end
+
+    if params[:end_date].present?
+      @orders = @orders.where("created_at <= ?", params[:end_date])
+    end
   end
 
   def new
