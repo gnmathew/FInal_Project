@@ -6,7 +6,7 @@ class Winner < ApplicationRecord
   belongs_to :address, optional: true
   belongs_to :bet
 
-  mount_uploader :image, ImageUploader
+  mount_uploader :picture, ImageUploader
 
   aasm column: :state do
     state :won, initial: true

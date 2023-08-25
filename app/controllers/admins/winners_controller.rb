@@ -1,4 +1,5 @@
 class Admins::WinnersController < Admins::BaseController
+  before_action :set_winner, except: :index
   def index
     @winners = Winner.all
 
@@ -43,6 +44,7 @@ class Admins::WinnersController < Admins::BaseController
 
   def pay
     if @winner.pay!
+      @winner.paid_at = Time.current
       redirect_to winners_path, notice: 'Paid successfully.'
     else
       redirect_to winners_path, alert: 'Unable to pay.'
@@ -93,6 +95,10 @@ class Admins::WinnersController < Admins::BaseController
       redirect_to winners_path, alert: 'Unable to remove publish.'
     end
 
+  end
+
+  def set_winner
+    @winner = Winner.find(params[:id])
   end
 
 
