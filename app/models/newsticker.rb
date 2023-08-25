@@ -1,0 +1,2 @@
+class Newsticker < ApplicationRecord
+end
