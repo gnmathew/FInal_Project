@@ -24,9 +24,9 @@
           <td><%= client.parent&.email %></td>
           <td><%= client.email %></td>
           <td><%= client.total_deposit %></td>
-          <td><%#= client.member_total_deposits %></td>
+          <td><%= client.children.sum { |child_member| child_member.total_deposit } %></td>
           <td><%= client.coins %></td>
-          <td><%#= client.total_used_coins %></td>
+          <td><%= client.bets.count %></td>
           <td><%= client.children_members %></td>
           <td><%= client.phone_number %></td>
           <td><%= link_to "Balance Operate", user_new_genre_order_path(user_id: client.id, genre: :increase), class: "btn btn-warning" %></td>

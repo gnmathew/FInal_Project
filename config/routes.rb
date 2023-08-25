@@ -25,6 +25,7 @@ Rails.application.routes.draw do
         get 'orders/:genre/new', to: 'orders#new', as: :new_genre_order
         post 'orders/:genre', to: 'orders#create', as: :create_genre_order
       end
+      resources :invite, only: [:index]
       resources :categories, except: [:show]
       resources :offers
       resources :orders, only: [:index] do

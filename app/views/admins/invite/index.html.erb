@@ -1,0 +1,54 @@
+<div class="container", style="margin-top: 90px; margin-bottom: 50px;">
+  <%= form_tag invite_index_path, method: :get, class: 'form-inline' do %>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group mb-2">
+          <%= label_tag :parent_email, 'Promoter Email', class: 'mr-2' %>
+          <%= text_field_tag :parent_email, nil, class: 'form-control' %>
+        </div>
+      </div>
+    </div>
+    <div class="row" style="padding-right: 5px; padding-left: 6px;">
+      <div class="col-md-12 text-center">
+        <%= submit_tag 'Search', class: 'btn btn-outline-secondary w-100' %>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+
+<div class="container" style="margin-top: 170px;">
+  <div style="background-color: #ffd500; border-style: solid; border-color: #ffd500; text-align: center;">
+    <h3 class="justify-content-center">Invite list</h3>
+  </div>
+  <table class="table table-bordered table-dark">
+    <thead class="table-secondary">
+    <tr>
+      <th>Parent Email</th>
+      <th>Email</th>
+      <th>Total Deposit</th>
+      <th>Member Total Deposit</th>
+      <th>Coins</th>
+      <th>Created At</th>
+      <th>Coins used count</th>
+      <th>Child Members</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @invitees.each do |invitee| %>
+      <tr>
+        <td><%= invitee.parent.email %></td>
+        <td><%= invitee.email %></td>
+        <td><%= invitee.total_deposit %></td>
+        <td>
+          <%= invitee.children.sum { |child_member| child_member.total_deposit } %>
+        </td>
+        <td><%= invitee.coins %></td>
+        <td><%= invitee.created_at %></td>
+        <td><%= invitee.bets.count %></td>
+        <td><%= invitee.children_members %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>
