@@ -13,6 +13,7 @@ class Admins::NewstickerController < Admins::BaseController
 
   def create
     @newsticker = Newsticker.new(newsticker_params)
+    @newsticker.admin = current_admin_user
     if @newsticker.save
       flash[:notice] = "You have successfully created a NewsTicker"
       redirect_to newsticker_index_path
