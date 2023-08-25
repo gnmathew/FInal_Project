@@ -26,6 +26,7 @@ Rails.application.routes.draw do
         post 'orders/:genre', to: 'orders#create', as: :create_genre_order
       end
       resources :newsticker
+      resources :banners
       resources :invite, only: [:index]
       resources :categories, except: [:show]
       resources :offers
