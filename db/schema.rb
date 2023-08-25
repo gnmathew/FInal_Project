@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_25_092947) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_25_104528) do
   create_table "address_barangays", charset: "utf8mb4", force: :cascade do |t|
     t.bigint "city_id"
     t.string "code"
@@ -110,6 +110,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_25_092947) do
     t.bigint "admin_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
     t.index ["admin_id"], name: "index_newstickers_on_admin_id"
   end
 
