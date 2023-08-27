@@ -4,60 +4,55 @@
   Winners Feedback
 </div>
 
-<div class="row justify-content-center" >
-  <div class="col-md-3 " >
-    <div class="card h-100" style="background-color: black">
-      <img src="<%= asset_path('banner_images/img4.jpg') %>" class="card-img-top" alt="..." style="height: 100%">
+<% if @last_five_feedbacks.present? %>
+  <div class="row justify-content-center">
+    <% @last_five_feedbacks.each do |last_five_feedback| %>
+      <div class="col-md-3" style="margin-bottom: 20px;margin-top: 10px;">
+        <div class="card h-100" style="background-color: black;">
+          <%= image_tag last_five_feedback.picture.url, class: "card-img-top", style: "height: 200px; width: 300px" if last_five_feedback.picture.present? %>
+        </div>
+      </div>
+    <% end %>
 
+    <div class="col-md-3" style="margin-top: 10px; margin-bottom: 20px">
+      <%= link_to shares_path, style: "text-decoration: none;" do %>
+        <div class="card" style="background-color: rgb(255,213,0); height: 200px">
+          <div class="card-img-top text-center">
+            <h2 style="margin-top: 30%; color: white">MORE..</h2>
+          </div>
+        </div>
+      <% end %>
     </div>
   </div>
-  <div class="col-md-3">
-    <div class="card h-100" style="background-color: black">
-      <img src="<%= asset_path('banner_images/img5.jpg') %>" class="card-img-top" alt="..." style="height: 100%">
+<% else %>
+  <h3 class="text-center">NO FEEDBACK AVAILABLE</h3>
+<% end %>
 
-    </div>
-  </div>
-  <div class="col-md-3">
-    <div class="card h-100" style="background-color: black">
-      <img src="<%= asset_path('banner_images/img6.jpg') %>" class="card-img-top" alt="..." style="height: 100%">
-
-    </div>
-  </div>
-  <div class="col-md-3">
-    <div class="card h-100" style="background-color: black">
-      <img src="<%= asset_path('banner_images/img7.jpg') %>" class="card-img-top" alt="..." style="height: 100%">
-
-    </div>
-  </div>
-</div>
 
 <div class="empty-rectangular-box mb-3 mt-3" role="alert" style="border-radius: 0; text-align: center; border: 1px solid #363636; background-color: #363636; color: white;">
   Coming soon
 </div>
 
-<div class="row justify-content-center" >
-  <div class="col-md-3">
-    <div class="card h-100" style="background-color: black">
-      <img src="<%= asset_path('banner_images/img8.jpg') %>" class="card-img-top" alt="..." style="height: 100%">
+<% if @starting_items.present? %>
+  <div class="row justify-content-center">
+    <% @starting_items.each do |starting_item| %>
+      <div class="col-md-3" style="margin-bottom: 20px;margin-top: 10px;">
+        <div class="card h-100" style="background-color: black;">
+          <%= image_tag starting_item.image.url, class: "card-img-top", style: "height: 200px; width: 300px" if starting_item.image.present? %>
+        </div>
+      </div>
+    <% end %>
 
+    <div class="col-md-3" style="margin-top: 10px; margin-bottom: 20px">
+      <%= link_to lottery_index_path, style: "text-decoration: none;" do %>
+        <div class="card" style="background-color: rgb(255,145,0); height: 200px">
+          <div class="card-img-top text-center">
+            <h2 style="margin-top: 30%; color: white">MORE..</h2>
+          </div>
+        </div>
+      <% end %>
     </div>
   </div>
-  <div class="col-md-3">
-    <div class="card h-100" style="background-color: black">
-      <img src="<%= asset_path('banner_images/img9.jpg') %>" class="card-img-top" alt="..." style="height: 100%">
-
-    </div>
-  </div>
-  <div class="col-md-3">
-    <div class="card h-100" style="background-color: black">
-      <img src="<%= asset_path('banner_images/img10.jpg') %>" class="card-img-top" alt="..." style="height: 100%">
-
-    </div>
-  </div>
-  <div class="col-md-3">
-    <div class="card h-100" style="background-color: black">
-      <img src="<%= asset_path('banner_images/img11.jpg') %>" class="card-img-top" alt="..."style="height: 100%">
-
-    </div>
-  </div>
-</div>
+<% else %>
+  <h3 class="text-center">NOT AVAILABLE</h3>
+<% end %>
