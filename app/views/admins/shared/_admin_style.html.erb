@@ -45,6 +45,9 @@
               <ul class="dropdown-menu">
                 <li><%= link_to "User List", users_path, class: "dropdown-item" %></li>
                 <li><%= link_to "Item List", items_path, class: "dropdown-item" %></li>
+                <li><%= link_to "Winner List", winners_path, class: "dropdown-item" %></li>
+                <li><%= link_to "Banners", banners_path, class: "dropdown-item" %></li>
+                <li><%= link_to "NewsTicker", newsticker_index_path, class: "dropdown-item" %></li>
                 <li>
                   <hr class="dropdown-divider">
                 </li>
@@ -74,11 +77,6 @@
     </div>
   </div>
 </nav>
-
-
-
-
-
 
 <% if flash[:notice] %>
   <div id="notice" class="alert alert-info mt-3 alert-dismissible" role="alert">

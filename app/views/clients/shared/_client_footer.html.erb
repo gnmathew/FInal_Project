@@ -16,7 +16,7 @@
         </li>
         <% if user_signed_in? %>
           <li class="nav-item">
-            <a class="nav-link active" aria-disabled="true" style="padding: 10px 20px;">ME</a>
+            <%= link_to "ME", profile_path, class: "nav-link active", style: "padding: 10px 20px;color: white"%>
           </li>
         <% end %>
       </ul>
