@@ -1,6 +1,8 @@
 class Clients::LotteryController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   def index
+    @banners = Banner.where(status: "active" ).where("created_at <= ?", Time.now).where("offline_at > ?", Time.now)
+    @newstickers = Newsticker.where(status: "active")
     @categories = Category.all
     @items = Item.where(status: 'active', state: 'starting', online_at: Time.current..)
     if params[:category_id].present?
