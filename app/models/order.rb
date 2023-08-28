@@ -5,7 +5,7 @@ class Order < ApplicationRecord
   belongs_to :offer, optional: true
 
   after_create :assign_serial_number
-
+  validate :can_deduct?, on: :create
   validates :amount, presence: true, if: :deposit?
 
   enum genre: { deposit: 0, increase: 1, deduct: 2, bonus: 3, share: 4 }
@@ -29,7 +29,6 @@ class Order < ApplicationRecord
       transitions from: :pending, to: :paid, after: [:increase_user_coins_paid, :decrease_user_coins_paid]
     end
   end
-
 
   private
 
@@ -75,5 +74,9 @@ class Order < ApplicationRecord
     serial_number = "#{date_format}-#{self.id}-#{user.id}-#{number_count}"
     update(serial_number: serial_number)
   end
-
+  def can_deduct?
+    if deduct? && user.coins <= coin
+      errors.add(:base, 'coins can not be negative')
+    end
+  end
 end
