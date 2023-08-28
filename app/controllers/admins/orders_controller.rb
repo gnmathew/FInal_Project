@@ -1,6 +1,7 @@
 class Admins::OrdersController < Admins::BaseController
   before_action :set_order, except: [:index, :new, :create]
   before_action :set_user, only: [:new, :create]
+
   def index
     @orders = Order.includes(:offer)
     @total_orders = @orders.sum { |order| order.amount }
@@ -20,8 +21,8 @@ class Admins::OrdersController < Admins::BaseController
     end
 
     if params[:genre].present?
-    @orders = @orders.where(genre: params[:genre])
-  end
+      @orders = @orders.where(genre: params[:genre])
+    end
 
     if params[:start_date].present?
       @orders = @orders.where("created_at >= ?", params[:start_date])
@@ -43,11 +44,10 @@ class Admins::OrdersController < Admins::BaseController
     if @order.save
       if @order.may_pay?
         @order.pay!
+        flash[:notice] = "Paid successfully"
       else
-        flash[:alert] = @order.errors.full_messages.join(', ')
-        redirect_to user_new_genre_order_path
+        flash[:alert] = "Payment Unsuccessful"
       end
-      flash[:notice] = "Paid successfully"
     else
       flash[:alert] = @order.errors.full_messages.join(', ')
     end
@@ -70,11 +70,11 @@ class Admins::OrdersController < Admins::BaseController
     end
   end
 
-    private
+  private
 
-    def set_order
-      @order = Order.find(params[:id])
-    end
+  def set_order
+    @order = Order.find(params[:id])
+  end
 
   def set_user
     @client = User.client.find(params[:user_id])
