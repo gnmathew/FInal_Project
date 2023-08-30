@@ -11,7 +11,7 @@ class Clients::ProfilesController < ApplicationController
       @winning_histories = current_user.winners.page(params[:page]).per(2)
     end
     if params[:invite_history].present?
-      @invite_histories = current_user.children_members&.page(params[:page])&.per(2)
+      @invite_histories = current_user.children.page(params[:page])&.per(2)
     end
 
   end
