@@ -1,5 +1,7 @@
 class Clients::UsersController < ApplicationController
   def invite_people
+    @invited_members = current_user.children
+    @rewards = current_user.member_level
     get_promoter
     qrcode = RQRCode::QRCode.new(@promoter_email)
     @qrcode_svg = qrcode.as_svg(module_size: 4)

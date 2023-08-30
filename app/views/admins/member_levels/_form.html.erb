@@ -1,0 +1,11 @@
+<div style="margin-top: 10%">
+  <%= form_with(model: member_level, url: url, method: method, data: {turbo: false}) do |form| %>
+    <%= form.label :level,"Level" %>
+    <%= form.number_field :level , class:"form-control mb-2 mt-2", placeholder: "Level"%>
+    <%= form.label :required_members, "Required Members" %>
+    <%= form.number_field :required_members, class:"form-control mb-2 mt-2", placeholder: "Required Members" %>
+    <%= form.label :coins, "Coins" %>
+    <%= form.number_field :coins , class:"form-control mb-2 mt-2", placeholder: "Coins"%>
+    <%= form.submit "Submit", class: "btn btn-outline-warning w-100" %>
+  <% end %>
+</div>

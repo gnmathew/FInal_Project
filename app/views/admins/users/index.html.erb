@@ -9,6 +9,7 @@
       <tr>
         <th>Parent Email</th>
         <th>Email</th>
+        <th>Level</th>
         <th>Total Deposit</th>
         <th>Member Total Deposit</th>
         <th>Coins</th>
@@ -23,6 +24,7 @@
         <tr>
           <td><%= client.parent&.email %></td>
           <td><%= client.email %></td>
+          <td><%= client.member_level.level %></td>
           <td><%= client.total_deposit %></td>
           <td><%= client.children.sum { |child_member| child_member.total_deposit } %></td>
           <td><%= client.coins %></td>

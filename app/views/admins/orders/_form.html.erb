@@ -2,7 +2,7 @@
   <%= form.label :coin,"Coins" %>
   <%= form.number_field :coin, class:"form-control mb-2 mt-2", placeholder: "Coins" %>
   <%= form.label :coin,"Genre" %>
-  <%= form.text_field :genre , class:"form-control mb-2", value: params[:genre], disabled: true %>
+  <%= form.text_field :genre , class:"form-control mb-2", value: params[:genre].humanize, disabled: true %>
   <%= form.label :coin,"Remarks" %>
   <%= form.text_field :remarks , class:"form-control mb-2", placeholder: "Remarks" %>
   <%= form.submit "Save Order",class: "btn btn-outline-warning w-100" %>

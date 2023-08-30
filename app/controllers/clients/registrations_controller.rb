@@ -13,6 +13,7 @@ class Clients::RegistrationsController < Devise::RegistrationsController
   def create
     build_resource(sign_up_params)
     resource.parent = User.client.find_by(email: cookies[:promoter])
+    resource.member_level_id = MemberLevel.first.id
     resource.save
     yield resource if block_given?
     if resource.persisted?

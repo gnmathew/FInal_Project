@@ -6,5 +6,14 @@
       <%= raw @qrcode_svg %>
     </div>
     <p class="text-white" style="margin-right: 10px; margin-top: 10px;"><span style="color: darkorange">Invite URL: </span><%= @promoter_email %></p>
+    <div style="margin-top: 2px;margin-bottom: 5px; border-style: solid; border-color: rgba(245,199,14,0); color: #000000; background-color: rgb(255,255,255); border-radius: 10px; height: 35px">
+      <p>Level: <%= @rewards.level %> share to <%= @rewards.required_members %> friends and get <%= @rewards.coins %> coins</p>
+    </div>
+    <h4 style="color: orange">Invited Members</h4>
+    <% @invited_members.each do |invited_member| %>
+      <div class="text-white" style="border-style: solid; border-color: rgba(255,220,113,0); margin-bottom: 5px" >
+        <%= invited_member.email %>
+      </div>
+    <% end %>
   </div>
 </div>

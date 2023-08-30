@@ -1,0 +1,29 @@
+<div class="container text-center" style="margin-top: 170px;">
+  <div style="background-color: #ffd500; border-style: solid; border-color: #ffd500; text-align: center;">
+    <%= link_to 'New', new_member_level_path, style: "float: right; vertical-align: center", class: "btn btn-light mt-1 me-2" %>
+    <h3 class="justify-content-center">Member Levels</h3>
+  </div>
+  <table class="table table-bordered table-dark">
+    <thead class="table-secondary">
+    <tr>
+      <th>Level</th>
+      <th>Required Members</th>
+      <th>Coins</th>
+      <th>Buttons</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @member_levels.each do |member_level| %>
+      <tr>
+        <td><%= member_level.level %></td>
+        <td><%= member_level.required_members %></td>
+        <td><%= member_level.coins %></td>
+        <td>
+          <%= link_to 'Edit', edit_member_level_path(member_level), class: "btn btn-outline-light w-25 mb-1" %>
+          <%= button_to 'Delete', member_level_path(member_level), method: :delete, class: "btn btn-outline-danger w-25 mb-1" %>
+        </td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>
